@@ -3,19 +3,19 @@ import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 import base64
-import google.generativeai as genai
+#import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyAIewGMqAtMEtZMZjDJgEPNEwh_Q74yfGw")  # Getting the API key from .env file at the time of configuration
+#genai.configure(api_key="AIzaSyAIewGMqAtMEtZMZjDJgEPNEwh_Q74yfGw")  # Getting the API key from .env file at the time of configuration
 model = load_model('test.keras') #add final model file
 class_dict = np.load("class_names.npy")
-
+'''
 # Function for gemini response
 def get_gemini_response(prompt):
     # Function to load Gemini Pro model and get responses
     model = genai.GenerativeModel("gemini-pro")
     response = model.generate_content(prompt)
     return response.text
-
+'''
 
 def predict(image):
     IMG_SIZE = (1, 224, 224, 3)
@@ -66,11 +66,11 @@ if __name__ == '__main__':
         if st.button("Predict"):
             pred = predict(img)
             name = class_dict[pred]
-            prompt = "You are an expert in classification of medical plants and your task is to provide medicinal qualities of the plant like Diseases it cures and where it is most present in india in point wise. the plant name is given at the end" + name 
+            #prompt = "You are an expert in classification of medical plants and your task is to provide medicinal qualities of the plant like Diseases it cures and where it is most present in india in point wise. the plant name is given at the end" + name 
             result = f'<p style="font-family:sans-serif; color:Red; font-size: 16px;">The given image is {name}</p>'
             st.markdown(result, unsafe_allow_html=True)
-            response = get_gemini_response(prompt)
-            st.write(response)
+            #response = get_gemini_response(prompt)
+            #st.write(response)
 
 
 
