@@ -1,5 +1,5 @@
 streamlit
 numpy
 google-generativeai
-tensorflow==2.15.0
+tensorflow==3.0.5
 keras==3.0.5
